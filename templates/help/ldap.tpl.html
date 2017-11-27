@@ -1,0 +1,57 @@
+<h4>{t}LDAP Authentication{/t}</h4>
+
+<p>
+  {t escape="no"}Eventum can be used with an LDAP directory service for centralized authentication. To enable this feature, set the following option in <b>config.php</b>:{/t}
+</p>
+
+<pre>
+  {literal}define('APP_AUTH_BACKEND', 'LDAP_Auth_Backend');{/literal}
+</pre>
+
+<p>
+  {t}The following parameters need to be configured to enable LDAP integration:{/t}
+</p>
+
+<dl>
+  <dt><b>{t}Host{/t}</b></dt>
+  <dd>{t}The host name or IP address of the LDAP server. The default LDAP port is 389.{/t}</dd>
+  <dt><b>{t}Port{/t}</b></dt>
+  <dd>{t}The TCP port of the LDAP directory service{/t}</dd>
+  <dt><b>{t}Bind DN{/t}</b></dt>
+  <dd>{t}The DN of the LDAP principal used for directory lookups{/t}</dd>
+  <dt><b>{t}Bind PW{/t}</b></dt>
+  <dd>{t}The password for the principal specified as Bind DN{/t}</dd>
+  <dt><b>{t}Base DN{/t}</b></dt>
+  <dd>{t}The path of the LDAP container containing the user accounts{/t}</dd>
+  <dt><b>{t}User ID attribute{/t}</b></dt>
+  <dd>{t}The name of an LDAP attribute containing the DN (or its user-specific part) of an LDAP account. This is used as bind DN when checking the entered password. If unsure leave blank to use the default value "uid".{/t}</dd>
+  <dt><b>{t}User DN{/t}</b></dt>
+  <dd>{t escape="no"}The DN used when checking the entered user password. The placeholder <code>%UID</code> will be replaced with the value of the User ID attribute.{/t}</dd>
+  <dt><b>{t}User Filter{/t}</b></dt>
+  <dd>{t}Optional filter to search for the LDAP account matching an Eventum login name. If unsure leave blank.{/t}</dd>
+  <dt><b>{t}Customer ID attribute{/t}</b></dt>
+  <dd>{t}{/t}</dd>
+  <dt><b>{t}Contact ID attribute{/t}</b></dt>
+  <dd>{t}{/t}</dd>
+  <dt><b>{t}DN for active users{/t}</b></dt>
+  <dd>{t}{/t}</dd>
+  <dt><b>{t}DN for inactive users{/t}</b></dt>
+  <dd>{t}{/t}</dd>
+  <dt><b>{t}Create Users{/t}</b></dt>
+  <dd>{t}{/t}</dd>
+  <dt><b>{t}Default Roles{/t}</b></dt>
+  <dd>{t}{/t}</dd>
+</dl>
+
+<h5>{t}Integration with Microsoft Active Directory{/t}</h5>
+
+<p>
+  {t}Active Directory uses a few non-standard attribute names, so it requires some special configuration:{/t}
+</p>
+
+<table>
+  <tr> <td><b>{t}Port{/t}</b></td> <td>{t}389 (local domain) or 3268 (global catalog){/t}</td> </tr>
+  <tr> <td><b>{t}User ID attribute{/t}</b></td> <td><code>userPrincipalName</code></td> </tr>
+  <tr> <td><b>{t}User DN{/t}</b></td> <td><code>%UID</code></td> </tr>
+  <tr> <td><b>{t}User Filter{/t}</b></td> <td><code>{literal}((mail={username}){/literal}</code></td> </tr>
+</table>
